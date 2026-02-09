@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lamborghini vs Ferrari</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg-color: #000;
+      --text-color: #fff;
+      --accent-color: #ffcc00;
+      --card-bg: #111;
+      --card-border: #222;
+      --gap: 2rem;
+      --radius: 12px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.5;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem;
+      border-bottom: 1px solid #222;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      opacity: 0.7;
+    }
+
+    main.container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      gap: var(--gap);
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--gap);
+    }
+
+    .car {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .car:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 204, 0, 0.3);
+    }
+
+    .car img {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .car h2 {
+      padding: 1rem;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    .stats {
+      padding: 0 1rem 1rem;
+    }
+
+    .stats p {
+      margin: 0.3rem 0;
+      opacity: 0.85;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid #222;
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lamborghini vs Ferrari</h1>
+    <p>Iconic models • Performance comparison • Past to future</p>
+  </header>
+
+  <main class="container">
+
+    <!-- COMPARISON 1 -->
+    <div class="comparison">
+      <div class="car">
+        <img src="lambo_aventador.jpg" alt="Lamborghini Aventador">
+        <h2>Lamborghini Aventador</h2>
+        <div class="stats">
+          <p><strong>Years:</strong> 2011–2022</p>
+          <p><strong>Engine:</strong> V12</p>
+          <p><strong>Top Speed:</strong> ~217 mph</p>
+          <p><strong>0–60:</strong> ~2.9 sec</p>
+          <p><strong>Braking:</strong> ~100 ft (60–0)</p>
+        </div>
+      </div>
+
+      <div class="car">
+        <img src="ferrari_laferrari.jpg" alt="Ferrari LaFerrari">
+        <h2>Ferrari LaFerrari</h2>
+        <div class="stats">
+          <p><strong>Years:</strong> 2013–2018</p>
+          <p><strong>Engine:</strong> V12 Hybrid</p>
+          <p><strong>Top Speed:</strong> ~218 mph</p>
+          <p><strong>0–60:</strong> ~2.6 sec</p>
+          <p><strong>Braking:</strong> ~98 ft (60–0)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARISON 2 -->
+    <div class="comparison">
+      <div class="car">
+        <img src="lambo_countach.jpg" alt="Lamborghini Countach">
+        <h2>Lamborghini Countach</h2>
+        <div class="stats">
+          <p><strong>Years:</strong> 1974–1990</p>
+          <p><strong>Engine:</strong> V12</p>
+          <p><strong>Top Speed:</strong> ~183 mph</p>
+          <p><strong>0–60:</strong> ~5.4 sec</p>
+          <p><strong>Braking:</strong> ~140 ft</p>
+        </div>
+      </div>
+
+      <div class="car">
+        <img src="ferrari_f40.jpg" alt="Ferrari F40">
+        <h2>Ferrari F40</h2>
+        <div class="stats">
+          <p><strong>Years:</strong> 1987–1992</p>
+          <p><strong>Engine:</strong> Twin-Turbo V8</p>
+          <p><strong>Top Speed:</strong> ~201 mph</p>
+          <p><strong>0–60:</strong> ~4.1 sec</p>
+          <p><strong>Braking:</strong> ~130 ft</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Built as a starter comparison site • Expand with more models & prototypes
+  </footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+</body>
+</html>
