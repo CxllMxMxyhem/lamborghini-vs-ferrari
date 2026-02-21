@@ -1,186 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Lamborghini vs Ferrari</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Exotic Duels - Lamborghini vs Ferrari</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg-color: #000;
-      --text-color: #fff;
-      --accent-color: #ffcc00;
-      --card-bg: #111;
-      --card-border: #222;
-      --gap: 2rem;
-      --radius: 12px;
-    }
+<style>
+:root{
+--bg:#000;
+--text:#fff;
+--accent:#ffcc00;
+--card:#111;
+--border:#222;
+--radius:12px;
+}
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;}
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.5;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
-    }
+body{
+background:var(--bg);
+color:var(--text);
+opacity:0;
+transition:opacity .8s ease;
+}
+body.loaded{opacity:1;}
 
-    body.loaded {
-      opacity: 1;
-    }
+.hero{
+text-align:center;
+padding:5rem 1rem 3rem;
+border-bottom:1px solid #222;
+}
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:4rem;
+letter-spacing:4px;
+color:var(--accent);
+text-shadow:0 0 25px rgba(255,204,0,.5);
+margin-bottom:1.5rem;
+}
+.hero p{
+max-width:900px;
+margin:auto;
+opacity:.75;
+line-height:1.7;
+}
 
-    header {
-      text-align: center;
-      padding: 4rem 1rem;
-      border-bottom: 1px solid #222;
-    }
+.container{
+max-width:1200px;
+margin:2rem auto;
+padding:0 1rem;
+display:grid;
+gap:2rem;
+}
 
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--accent-color);
-      margin-bottom: 0.5rem;
-    }
+.comparison{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:2rem;
+}
 
-    header p {
-      opacity: 0.7;
-    }
+.car{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:var(--radius);
+overflow:hidden;
+cursor:pointer;
+transition:.3s ease;
+}
+.car:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 25px rgba(255,204,0,.3);
+}
+.car img{width:100%;display:block;border-bottom:1px solid var(--border);}
+.car h2{padding:1rem;color:var(--accent);}
 
-    main.container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      display: grid;
-      gap: var(--gap);
-    }
+.years{
+padding:0 1rem;
+margin-top:-0.6rem;
+margin-bottom:0.8rem;
+font-size:.85rem;
+opacity:.6;
+letter-spacing:1px;
+}
 
-    .comparison {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--gap);
-    }
+.stats{padding:0 1rem 1rem;}
+.stat{margin-bottom:10px;}
+.stat-label{font-size:.85rem;margin-bottom:4px;opacity:.8;}
+.bar{height:8px;background:#222;border-radius:4px;overflow:hidden;}
+.fill{height:100%;width:0;background:var(--accent);transition:width 1.5s ease;}
+.stat-value{font-size:.8rem;margin-top:3px;opacity:.7;}
 
-    .car {
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:2rem;
+opacity:0;
+visibility:hidden;
+transition:opacity .4s ease;
+}
+.modal.show{opacity:1;visibility:visible;}
 
-    .car:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(255, 204, 0, 0.3);
-    }
+.modal-content{
+background:#111;
+max-width:900px;
+width:100%;
+border-radius:12px;
+padding:2rem;
+max-height:90vh;
+overflow-y:auto;
+transform:scale(.9);
+transition:transform .4s ease;
+position:relative;
+}
+.modal.show .modal-content{transform:scale(1);}
 
-    .car img {
-      width: 100%;
-      display: block;
-      border-bottom: 1px solid var(--card-border);
-    }
+.close{
+position:absolute;
+top:15px;
+right:20px;
+cursor:pointer;
+font-size:1.2rem;
+color:var(--accent);
+}
 
-    .car h2 {
-      padding: 1rem;
-      font-size: 1.5rem;
-      color: var(--accent-color);
-    }
+footer{
+text-align:center;
+padding:2rem;
+border-top:1px solid #222;
+opacity:.7;
+}
 
-    .stats {
-      padding: 0 1rem 1rem;
-    }
-
-    .stats p {
-      margin: 0.3rem 0;
-      opacity: 0.85;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      border-top: 1px solid #222;
-      opacity: 0.7;
-      font-size: 0.9rem;
-    }
-
-  </style>
+@media(max-width:768px){
+.comparison{grid-template-columns:1fr;}
+.hero h1{font-size:2.5rem;}
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>Lamborghini vs Ferrari</h1>
-    <p>Iconic models • Performance comparison • Past to future</p>
-  </header>
 
-  <main class="container">
+<div class="hero">
+<h1>EXOTIC DUELS</h1>
+<p>Compare Lamborghini and Ferrari rivals released in similar eras and explore their full development history.</p>
+</div>
 
-    <!-- COMPARISON 1 -->
-    <div class="comparison">
-      <div class="car">
-        <img src="lambo_aventador.jpg" alt="Lamborghini Aventador">
-        <h2>Lamborghini Aventador</h2>
-        <div class="stats">
-          <p><strong>Years:</strong> 2011–2022</p>
-          <p><strong>Engine:</strong> V12</p>
-          <p><strong>Top Speed:</strong> ~217 mph</p>
-          <p><strong>0–60:</strong> ~2.9 sec</p>
-          <p><strong>Braking:</strong> ~100 ft (60–0)</p>
-        </div>
-      </div>
+<main class="container">
 
-      <div class="car">
-        <img src="ferrari_laferrari.jpg" alt="Ferrari LaFerrari">
-        <h2>Ferrari LaFerrari</h2>
-        <div class="stats">
-          <p><strong>Years:</strong> 2013–2018</p>
-          <p><strong>Engine:</strong> V12 Hybrid</p>
-          <p><strong>Top Speed:</strong> ~218 mph</p>
-          <p><strong>0–60:</strong> ~2.6 sec</p>
-          <p><strong>Braking:</strong> ~98 ft (60–0)</p>
-        </div>
-      </div>
-    </div>
+<!-- COUNTACH vs F40 -->
+<div class="comparison">
 
-    <!-- COMPARISON 2 -->
-    <div class="comparison">
-      <div class="car">
-        <img src="lambo_countach.jpg" alt="Lamborghini Countach">
-        <h2>Lamborghini Countach</h2>
-        <div class="stats">
-          <p><strong>Years:</strong> 1974–1990</p>
-          <p><strong>Engine:</strong> V12</p>
-          <p><strong>Top Speed:</strong> ~183 mph</p>
-          <p><strong>0–60:</strong> ~5.4 sec</p>
-          <p><strong>Braking:</strong> ~140 ft</p>
-        </div>
-      </div>
+<div class="car" onclick="openModal('countach')">
+<img src="lambo_countach.jpg">
+<h2>Lamborghini Countach</h2>
+<p class="years">1974–1990</p>
+<div class="stats">
+<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="55%"></div></div><div class="stat-value">455 hp</div></div>
+<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="40%"></div></div><div class="stat-value">5.4 sec</div></div>
+<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="60%"></div></div><div class="stat-value">183 mph</div></div>
+</div>
+</div>
 
-      <div class="car">
-        <img src="ferrari_f40.jpg" alt="Ferrari F40">
-        <h2>Ferrari F40</h2>
-        <div class="stats">
-          <p><strong>Years:</strong> 1987–1992</p>
-          <p><strong>Engine:</strong> Twin-Turbo V8</p>
-          <p><strong>Top Speed:</strong> ~201 mph</p>
-          <p><strong>0–60:</strong> ~4.1 sec</p>
-          <p><strong>Braking:</strong> ~130 ft</p>
-        </div>
-      </div>
-    </div>
+<div class="car" onclick="openModal('f40')">
+<img src="ferrari_f40.jpg">
+<h2>Ferrari F40</h2>
+<p class="years">1987–1992</p>
+<div class="stats">
+<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="65%"></div></div><div class="stat-value">471 hp</div></div>
+<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="55%"></div></div><div class="stat-value">4.1 sec</div></div>
+<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="75%"></div></div><div class="stat-value">201 mph</div></div>
+</div>
+</div>
 
-  </main>
+</div>
 
-  <footer>
-    Built as a starter comparison site • Expand with more models & prototypes
-  </footer>
+<!-- GALLARDO vs 458 -->
+<div class="comparison">
 
-  <script>
-    window.addEventListener("load", () => {
-      document.body.classList.add("loaded");
-    });
-  </script>
+<div class="car" onclick="openModal('gallardo')">
+<img src="gallardo.jpg">
+<h2>Lamborghini Gallardo</h2>
+<p class="years">2003–2013</p>
+<div class="stats">
+<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="75%"></div></div><div class="stat-value">562 hp</div></div>
+<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="70%"></div></div><div class="stat-value">3.7 sec</div></div>
+<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="80%"></div></div><div class="stat-value">202 mph</div></div>
+</div>
+</div>
+
+<div class="car" onclick="openModal('f458')">
+<img src="ferrari_458.jpg">
+<h2>Ferrari 458 Italia</h2>
+<p class="years">2009–2015</p>
+<div class="stats">
+<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="78%"></div></div><div class="stat-value">562 hp</div></div>
+<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="85%"></div></div><div class="stat-value">3.3 sec</div></div>
+<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="90%"></div></div><div class="stat-value">210 mph</div></div>
+</div>
+</div>
+
+</div>
+
+<!-- HURACAN vs CALIFORNIA -->
+<div class="comparison">
+
+<div class="car" onclick="openModal('huracan')">
+<img src="huracan.jpg">
+<h2>Lamborghini Huracán</h2>
+<p class="years">2014–2023</p>
+<div class="stats">
+<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="80%"></div></div><div class="stat-value">602 hp</div></div>
+<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="90%"></div></div><div class="stat-value">2.9 sec</div></div>
+<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="85%"></div></div><div class="stat-value">202 mph</div></div>
+</div>
+</div>
+
+<div class="car" onclick="openModal('california')">
+<img src="california_t.jpg">
+<h2>Ferrari California T</h2>
+<p class="years">2014–2017</p>
+<div class="stats">
+<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="77%"></div></div><div class="stat-value">553 hp</div></div>
+<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="75%"></div></div><div class="stat-value">3.6 sec</div></div>
+<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="82%"></div></div><div class="stat-value">196 mph</div></div>
+</div>
+</div>
+
+</div>
+
+<!-- AVENTADOR vs LAFERRARI -->
+<div class="comparison">
+
+<div class="car" onclick="openModal('aventador')">
+<img src="lambo_aventador.jpg">
+<h2>Lamborghini Aventador</h2>
+<p class="years">2011–2022</p>
+<div class="stats">
+<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="90%"></div></div><div class="stat-value">730 hp</div></div>
+<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="92%"></div></div><div class="stat-value">2.9 sec</div></div>
+<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="95%"></div></div><div class="stat-value">217 mph</div></div>
+</div>
+</div>
+
+<div class="car" onclick="openModal('laferrari')">
+<img src="ferrari_laferrari.jpg">
+<h2>Ferrari LaFerrari</h2>
+<p class="years">2013–2018</p>
+<div class="stats">
+<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="100%"></div></div><div class="stat-value">949 hp</div></div>
+<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="100%"></div></div><div class="stat-value">2.6 sec</div></div>
+<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="100%"></div></div><div class="stat-value">218 mph</div></div>
+</div>
+</div>
+
+</div>
+
+</main>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<div class="close" onclick="closeModal()">✖ Close</div>
+<div id="modal-body"></div>
+</div>
+</div>
+
+<footer>Click any vehicle to view full history & factory production</footer>
+
+<script>
+window.addEventListener("load",()=>{
+document.body.classList.add("loaded");
+document.querySelectorAll(".fill").forEach(fill=>{
+setTimeout(()=>{fill.style.width=fill.getAttribute("data-width");},300);
+});
+});
+
+function openModal(car){
+const modal=document.getElementById("modal");
+const body=document.getElementById("modal-body");
+
+const history={
+countach:{img:"countach_factory.jpg",text:"The Countach (1974–1990) redefined the supercar with its wedge design and scissor doors. Built in Sant’Agata Bolognese with a longitudinal V12 and aluminum space-frame chassis, it became a cultural icon and shaped Lamborghini’s design identity for decades."},
+f40:{img:"f40_factory.jpg",text:"Released in 1987, the F40 was Ferrari’s 40th anniversary car and the last approved by Enzo Ferrari. Featuring a twin-turbo V8 and Kevlar-reinforced chassis, it became the first production car to exceed 200 mph"},
+gallardo:{img:"gallardo_factory.jpg",text:"Debuting in 2003, the Gallardo introduced Lamborghini’s V10 platform under Audi ownership. It modernized reliability, expanded global sales, and became Lamborghini’s best-selling model of its era."},
+f458:{img:"f458_factory.jpg",text:"Launched in 2009, the 458 Italia perfected Ferrari’s naturally aspirated V8 formula. Its 9,000 RPM engine and Formula 1-inspired aerodynamics made it one of the brand’s most celebrated driver cars."},
+huracan:{img:"huracan_factory.jpg",text:"Introduced in 2014, the Huracán refined Lamborghini’s V10 platform with advanced electronics and a hybrid aluminum-carbon chassis. It blended daily usability with extreme performance."},
+california:{img:"california_factory.jpg",text:"The 2014 California T marked Ferrari’s return to turbocharging. Its twin-scroll V8 delivered strong performance while maintaining grand touring comfort and versatility"},
+aventador:{img:"aventador_factory.jpg",text:"Debuting in 2011, the Aventador introduced Lamborghini’s carbon fiber monocoque chassis and a 6.5L V12. It defined the brand’s flagship performance identity for over a decade."},
+laferrari:{img:"laferrari_factory.jpg",text:"Unveiled in 2013, LaFerrari combined a naturally aspirated V12 with Ferrari’s F1-derived hybrid system. Producing 949 hp, it represented Ferrari’s technological peak of its generation."}
+};
+
+body.innerHTML=`
+<img src="${history[car].img}" style="width:33%; max-width:260px; display:block; margin:0 auto 1.5rem auto; border-radius:10px;">
+<h2 style="text-align:center;">${car.toUpperCase()}</h2>
+<p style="text-align:center; line-height:1.8; max-width:700px; margin:0 auto;">${history[car].text}</p>
+`;
+
+modal.classList.add("show");
+}
+
+function closeModal(){
+document.getElementById("modal").classList.remove("show");
+}
+</script>
+
 </body>
 </html>
