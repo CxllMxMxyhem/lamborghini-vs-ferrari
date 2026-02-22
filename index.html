@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<title>Exotic Duels - Lamborghini vs Ferrari</title>
+<title>Exotic Duels</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
 --bg:#000;
---text:#fff;
 --accent:#ffcc00;
 --card:#111;
 --border:#222;
---radius:12px;
 }
 
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial;
+}
 
 body{
-background:var(--bg);
-color:var(--text);
+background:#000;
+color:#fff;
 opacity:0;
-transition:opacity .8s ease;
+transition:.6s;
 }
+
 body.loaded{opacity:1;}
 
 .hero{
 text-align:center;
-padding:5rem 1rem 3rem;
+padding:4rem 1rem;
 border-bottom:1px solid #222;
 }
+
 .hero h1{
-font-family:'Playfair Display',serif;
+font-family:'Playfair Display';
 font-size:4rem;
+color:#ffcc00;
 letter-spacing:4px;
-color:var(--accent);
-text-shadow:0 0 25px rgba(255,204,0,.5);
-margin-bottom:1.5rem;
-}
-.hero p{
-max-width:900px;
-margin:auto;
-opacity:.75;
-line-height:1.7;
 }
 
 .container{
 max-width:1200px;
-margin:2rem auto;
-padding:0 1rem;
+margin:auto;
+padding:2rem;
 display:grid;
 gap:2rem;
 }
@@ -61,35 +61,53 @@ gap:2rem;
 }
 
 .car{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:var(--radius);
+background:#111;
+border:1px solid #222;
+border-radius:12px;
 overflow:hidden;
 cursor:pointer;
-transition:.3s ease;
+transition:.3s;
 }
+
 .car:hover{
-transform:translateY(-5px);
+transform:translateY(-6px);
 box-shadow:0 10px 25px rgba(255,204,0,.3);
 }
-.car img{width:100%;display:block;border-bottom:1px solid var(--border);}
-.car h2{padding:1rem;color:var(--accent);}
+
+.car img{width:100%;}
+
+.car h2{
+padding:1rem;
+color:#ffcc00;
+}
 
 .years{
 padding:0 1rem;
-margin-top:-0.6rem;
-margin-bottom:0.8rem;
-font-size:.85rem;
 opacity:.6;
-letter-spacing:1px;
+font-size:.85rem;
 }
 
-.stats{padding:0 1rem 1rem;}
-.stat{margin-bottom:10px;}
-.stat-label{font-size:.85rem;margin-bottom:4px;opacity:.8;}
-.bar{height:8px;background:#222;border-radius:4px;overflow:hidden;}
-.fill{height:100%;width:0;background:var(--accent);transition:width 1.5s ease;}
-.stat-value{font-size:.8rem;margin-top:3px;opacity:.7;}
+.stats{
+padding:1rem;
+}
+
+.bar{
+height:8px;
+background:#222;
+border-radius:4px;
+margin:5px 0;
+overflow:hidden;
+}
+
+.fill{
+height:100%;
+width:0;
+background:#ffcc00;
+transition:1.4s;
+}
+
+
+/* MODAL */
 
 .modal{
 position:fixed;
@@ -98,60 +116,59 @@ background:rgba(0,0,0,.9);
 display:flex;
 justify-content:center;
 align-items:center;
-padding:2rem;
 opacity:0;
 visibility:hidden;
-transition:opacity .4s ease;
+transition:.3s;
 }
-.modal.show{opacity:1;visibility:visible;}
+
+.modal.show{
+opacity:1;
+visibility:visible;
+}
 
 .modal-content{
 background:#111;
-max-width:900px;
-width:100%;
-border-radius:12px;
 padding:2rem;
-max-height:90vh;
-overflow-y:auto;
-transform:scale(.9);
-transition:transform .4s ease;
+border-radius:12px;
+max-width:800px;
+text-align:center;
 position:relative;
 }
-.modal.show .modal-content{transform:scale(1);}
+
+.modal img{
+width:33%;
+max-width:260px;
+margin-bottom:1rem;
+border-radius:10px;
+}
 
 .close{
 position:absolute;
 top:15px;
 right:20px;
 cursor:pointer;
-font-size:1.2rem;
-color:var(--accent);
+color:#ffcc00;
+font-size:20px;
+font-weight:bold;
+}
+.modal p{
+line-height:1.7;
 }
 
-footer{
-text-align:center;
-padding:2rem;
-border-top:1px solid #222;
-opacity:.7;
-}
-
-@media(max-width:768px){
-.comparison{grid-template-columns:1fr;}
-.hero h1{font-size:2.5rem;}
-}
 </style>
+
 </head>
 
 <body>
 
 <div class="hero">
 <h1>EXOTIC DUELS</h1>
-<p>Compare Lamborghini and Ferrari rivals released in similar eras and explore their full development history.</p>
 </div>
 
 <main class="container">
 
-<!-- COUNTACH vs F40 -->
+<!-- COUNTACH F40 -->
+
 <div class="comparison">
 
 <div class="car" onclick="openModal('countach')">
@@ -159,9 +176,9 @@ opacity:.7;
 <h2>Lamborghini Countach</h2>
 <p class="years">1974–1990</p>
 <div class="stats">
-<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="55%"></div></div><div class="stat-value">455 hp</div></div>
-<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="40%"></div></div><div class="stat-value">5.4 sec</div></div>
-<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="60%"></div></div><div class="stat-value">183 mph</div></div>
+455hp<div class="bar"><div class="fill" data-width="55%"></div></div>
+5.4s<div class="bar"><div class="fill" data-width="40%"></div></div>
+183mph<div class="bar"><div class="fill" data-width="60%"></div></div>
 </div>
 </div>
 
@@ -170,15 +187,75 @@ opacity:.7;
 <h2>Ferrari F40</h2>
 <p class="years">1987–1992</p>
 <div class="stats">
-<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="65%"></div></div><div class="stat-value">471 hp</div></div>
-<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="55%"></div></div><div class="stat-value">4.1 sec</div></div>
-<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="75%"></div></div><div class="stat-value">201 mph</div></div>
+471hp<div class="bar"><div class="fill" data-width="65%"></div></div>
+4.1s<div class="bar"><div class="fill" data-width="55%"></div></div>
+201mph<div class="bar"><div class="fill" data-width="75%"></div></div>
 </div>
 </div>
 
 </div>
 
-<!-- GALLARDO vs 458 -->
+
+<!-- DIABLO F50 -->
+
+<div class="comparison">
+
+<div class="car" onclick="openModal('diablo')">
+<img src="lambo_diablo.jpg">
+<h2>Lamborghini Diablo</h2>
+<p class="years">1990–2001</p>
+<div class="stats">
+575hp<div class="bar"><div class="fill" data-width="70%"></div></div>
+3.8s<div class="bar"><div class="fill" data-width="65%"></div></div>
+202mph<div class="bar"><div class="fill" data-width="80%"></div></div>
+</div>
+</div>
+
+<div class="car" onclick="openModal('f50')">
+<img src="ferrari_f50.jpg">
+<h2>Ferrari F50</h2>
+<p class="years">1995–1997</p>
+<div class="stats">
+520hp<div class="bar"><div class="fill" data-width="68%"></div></div>
+3.7s<div class="bar"><div class="fill" data-width="60%"></div></div>
+202mph<div class="bar"><div class="fill" data-width="78%"></div></div>
+</div>
+</div>
+
+</div>
+
+
+<!-- MURCIELAGO ENZO -->
+
+<div class="comparison">
+
+<div class="car" onclick="openModal('murcielago')">
+<img src="lambo_murcielago.jpg">
+<h2>Lamborghini Murciélago</h2>
+<p class="years">2001–2010</p>
+<div class="stats">
+661hp<div class="bar"><div class="fill" data-width="82%"></div></div>
+3.2s<div class="bar"><div class="fill" data-width="80%"></div></div>
+212mph<div class="bar"><div class="fill" data-width="88%"></div></div>
+</div>
+</div>
+
+<div class="car" onclick="openModal('enzo')">
+<img src="ferrari_enzo.jpg">
+<h2>Ferrari Enzo</h2>
+<p class="years">2002–2004</p>
+<div class="stats">
+651hp<div class="bar"><div class="fill" data-width="85%"></div></div>
+3.1s<div class="bar"><div class="fill" data-width="85%"></div></div>
+218mph<div class="bar"><div class="fill" data-width="90%"></div></div>
+</div>
+</div>
+
+</div>
+
+
+<!-- ALL OTHER CARS INCLUDED -->
+
 <div class="comparison">
 
 <div class="car" onclick="openModal('gallardo')">
@@ -186,9 +263,9 @@ opacity:.7;
 <h2>Lamborghini Gallardo</h2>
 <p class="years">2003–2013</p>
 <div class="stats">
-<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="75%"></div></div><div class="stat-value">562 hp</div></div>
-<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="70%"></div></div><div class="stat-value">3.7 sec</div></div>
-<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="80%"></div></div><div class="stat-value">202 mph</div></div>
+562hp<div class="bar"><div class="fill" data-width="75%"></div></div>
+3.7s<div class="bar"><div class="fill" data-width="70%"></div></div>
+202mph<div class="bar"><div class="fill" data-width="80%"></div></div>
 </div>
 </div>
 
@@ -197,9 +274,9 @@ opacity:.7;
 <h2>Ferrari 458 Italia</h2>
 <p class="years">2009–2015</p>
 <div class="stats">
-<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="78%"></div></div><div class="stat-value">562 hp</div></div>
-<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="85%"></div></div><div class="stat-value">3.3 sec</div></div>
-<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="90%"></div></div><div class="stat-value">210 mph</div></div>
+562hp<div class="bar"><div class="fill" data-width="78%"></div></div>
+3.3s<div class="bar"><div class="fill" data-width="85%"></div></div>
+210mph<div class="bar"><div class="fill" data-width="90%"></div></div>
 </div>
 </div>
 
@@ -212,25 +289,33 @@ opacity:.7;
 <img src="huracan.jpg">
 <h2>Lamborghini Huracán</h2>
 <p class="years">2014–2023</p>
+
 <div class="stats">
-<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="80%"></div></div><div class="stat-value">602 hp</div></div>
-<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="90%"></div></div><div class="stat-value">2.9 sec</div></div>
-<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="85%"></div></div><div class="stat-value">202 mph</div></div>
+602hp<div class="bar"><div class="fill" data-width="80%"></div></div>
+2.9 sec<div class="bar"><div class="fill" data-width="90%"></div></div>
+202 mph<div class="bar"><div class="fill" data-width="85%"></div></div>
 </div>
+
 </div>
+
+
 
 <div class="car" onclick="openModal('california')">
 <img src="california_t.jpg">
 <h2>Ferrari California T</h2>
 <p class="years">2014–2017</p>
+
 <div class="stats">
-<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="77%"></div></div><div class="stat-value">553 hp</div></div>
-<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="75%"></div></div><div class="stat-value">3.6 sec</div></div>
-<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="82%"></div></div><div class="stat-value">196 mph</div></div>
-</div>
+553hp<div class="bar"><div class="fill" data-width="77%"></div></div>
+3.6 sec<div class="bar"><div class="fill" data-width="75%"></div></div>
+196 mph<div class="bar"><div class="fill" data-width="82%"></div></div>
 </div>
 
 </div>
+
+</div>
+
+
 
 <!-- AVENTADOR vs LAFERRARI -->
 <div class="comparison">
@@ -239,74 +324,273 @@ opacity:.7;
 <img src="lambo_aventador.jpg">
 <h2>Lamborghini Aventador</h2>
 <p class="years">2011–2022</p>
+
 <div class="stats">
-<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="90%"></div></div><div class="stat-value">730 hp</div></div>
-<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="92%"></div></div><div class="stat-value">2.9 sec</div></div>
-<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="95%"></div></div><div class="stat-value">217 mph</div></div>
+730hp<div class="bar"><div class="fill" data-width="90%"></div></div>
+2.9 sec<div class="bar"><div class="fill" data-width="92%"></div></div>
+217 mph<div class="bar"><div class="fill" data-width="95%"></div></div>
 </div>
+
 </div>
+
+
 
 <div class="car" onclick="openModal('laferrari')">
 <img src="ferrari_laferrari.jpg">
 <h2>Ferrari LaFerrari</h2>
 <p class="years">2013–2018</p>
+
 <div class="stats">
-<div class="stat"><div class="stat-label">Horsepower</div><div class="bar"><div class="fill" data-width="100%"></div></div><div class="stat-value">949 hp</div></div>
-<div class="stat"><div class="stat-label">0–60</div><div class="bar"><div class="fill" data-width="100%"></div></div><div class="stat-value">2.6 sec</div></div>
-<div class="stat"><div class="stat-label">Top Speed</div><div class="bar"><div class="fill" data-width="100%"></div></div><div class="stat-value">218 mph</div></div>
+949hp<div class="bar"><div class="fill" data-width="100%"></div></div>
+2.6 sec<div class="bar"><div class="fill" data-width="100%"></div></div>
+218 mph<div class="bar"><div class="fill" data-width="100%"></div></div>
 </div>
+
+</div>
+
+</div>
+
+
+
+<!-- SIAN vs SF90 -->
+<div class="comparison">
+
+<div class="car" onclick="openModal('sian')">
+<img src="lambo_sian.jpg">
+<h2>Lamborghini Sián</h2>
+<p class="years">2019–2022</p>
+
+<div class="stats">
+819hp<div class="bar"><div class="fill" data-width="98%"></div></div>
+2.8 sec<div class="bar"><div class="fill" data-width="95%"></div></div>
+217 mph<div class="bar"><div class="fill" data-width="97%"></div></div>
+</div>
+
+</div>
+
+
+
+<div class="car" onclick="openModal('sf90')">
+<img src="ferrari_sf90.jpg">
+<h2>Ferrari SF90 Stradale</h2>
+<p class="years">2020–Present</p>
+
+<div class="stats">
+986hp<div class="bar"><div class="fill" data-width="100%"></div></div>
+2.5 sec<div class="bar"><div class="fill" data-width="100%"></div></div>
+211 mph<div class="bar"><div class="fill" data-width="97%"></div></div>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- REVUELTO vs 296 -->
+<div class="comparison">
+
+<div class="car" onclick="openModal('revuelto')">
+<img src="lambo_revuelto.jpg">
+<h2>Lamborghini Revuelto</h2>
+<p class="years">2023–Present</p>
+
+<div class="stats">
+1001hp<div class="bar"><div class="fill" data-width="100%"></div></div>
+2.5 sec<div class="bar"><div class="fill" data-width="100%"></div></div>
+217 mph<div class="bar"><div class="fill" data-width="98%"></div></div>
+</div>
+
+</div>
+
+
+
+<div class="car" onclick="openModal('f296')">
+<img src="ferrari_296.jpg">
+<h2>Ferrari 296 GTB</h2>
+<p class="years">2022–Present</p>
+
+<div class="stats">
+819hp<div class="bar"><div class="fill" data-width="85%"></div></div>
+2.9 sec<div class="bar"><div class="fill" data-width="92%"></div></div>
+205 mph<div class="bar"><div class="fill" data-width="88%"></div></div>
 </div>
 
 </div>
 
 </main>
 
-<!-- Modal -->
+
 <div class="modal" id="modal">
 <div class="modal-content">
+
 <div class="close" onclick="closeModal()">✖ Close</div>
+
 <div id="modal-body"></div>
+
 </div>
 </div>
 
-<footer>Click any vehicle to view full history & factory production</footer>
+
 
 <script>
+
 window.addEventListener("load",()=>{
+
 document.body.classList.add("loaded");
+
 document.querySelectorAll(".fill").forEach(fill=>{
-setTimeout(()=>{fill.style.width=fill.getAttribute("data-width");},300);
+setTimeout(()=>{
+fill.style.width=fill.dataset.width;
+},300);
 });
+
 });
+
 
 function openModal(car){
-const modal=document.getElementById("modal");
-const body=document.getElementById("modal-body");
 
 const history={
-countach:{img:"countach_factory.jpg",text:"The Countach (1974–1990) redefined the supercar with its wedge design and scissor doors. Built in Sant’Agata Bolognese with a longitudinal V12 and aluminum space-frame chassis, it became a cultural icon and shaped Lamborghini’s design identity for decades."},
-f40:{img:"f40_factory.jpg",text:"Released in 1987, the F40 was Ferrari’s 40th anniversary car and the last approved by Enzo Ferrari. Featuring a twin-turbo V8 and Kevlar-reinforced chassis, it became the first production car to exceed 200 mph"},
-gallardo:{img:"gallardo_factory.jpg",text:"Debuting in 2003, the Gallardo introduced Lamborghini’s V10 platform under Audi ownership. It modernized reliability, expanded global sales, and became Lamborghini’s best-selling model of its era."},
-f458:{img:"f458_factory.jpg",text:"Launched in 2009, the 458 Italia perfected Ferrari’s naturally aspirated V8 formula. Its 9,000 RPM engine and Formula 1-inspired aerodynamics made it one of the brand’s most celebrated driver cars."},
-huracan:{img:"huracan_factory.jpg",text:"Introduced in 2014, the Huracán refined Lamborghini’s V10 platform with advanced electronics and a hybrid aluminum-carbon chassis. It blended daily usability with extreme performance."},
-california:{img:"california_factory.jpg",text:"The 2014 California T marked Ferrari’s return to turbocharging. Its twin-scroll V8 delivered strong performance while maintaining grand touring comfort and versatility"},
-aventador:{img:"aventador_factory.jpg",text:"Debuting in 2011, the Aventador introduced Lamborghini’s carbon fiber monocoque chassis and a 6.5L V12. It defined the brand’s flagship performance identity for over a decade."},
-laferrari:{img:"laferrari_factory.jpg",text:"Unveiled in 2013, LaFerrari combined a naturally aspirated V12 with Ferrari’s F1-derived hybrid system. Producing 949 hp, it represented Ferrari’s technological peak of its generation."}
+
+
+countach:{
+name:"Lamborghini Countach",
+img:"countach_factory.jpg",
+text:"The Lamborghini Countach was developed during the early 1970s as Ferruccio Lamborghini pushed engineers to build a machine capable of surpassing Ferrari in both performance and presence. Designed by Marcello Gandini at Bertone, the car introduced wedge-shaped aerodynamics and scissor doors that became Lamborghini trademarks. Built in Sant’Agata Bolognese using a tubular aluminum space-frame chassis and a longitudinal V12 engine, the Countach became one of the most recognizable supercars in history and helped define the image of Lamborghini for decades."
+},
+
+
+f40:{
+name:"Ferrari F40",
+img:"f40_factory.jpg",
+text:"The Ferrari F40 was introduced in 1987 to celebrate Ferrari’s 40th anniversary and became the final car personally approved by Enzo Ferrari before his death. Engineers focused entirely on lightweight construction and raw performance, using Kevlar, carbon fiber, and composite materials. Built in Maranello around a steel tubular chassis and powered by a twin-turbocharged V8 engine, the F40 became the first production car capable of exceeding 200 mph and remains one of Ferrari’s purest driver-focused machines."
+},
+
+
+diablo:{
+name:"Lamborghini Diablo (Diablo GT)",
+img:"diablo_factory.jpg",
+text:"The Lamborghini Diablo replaced the Countach and represented Lamborghini’s move into the modern era. Development began during Chrysler ownership with the goal of achieving greater comfort and stability while retaining Lamborghini’s signature V12 performance. Built in Sant’Agata Bolognese using a reinforced tubular chassis and advanced aerodynamics, the Diablo became Lamborghini’s first production car capable of exceeding 200 mph and served as the company’s flagship throughout the 1990s."
+},
+
+
+f50:{
+name:"Ferrari Enzo",
+img:"f50_factory.jpg",
+text:"The Ferrari F50 was developed during the mid-1990s as Ferrari sought to transfer Formula One technology directly to a road-going supercar. Built largely by hand in Maranello, the F50 used a carbon fiber monocoque chassis and a naturally aspirated V12 engine derived from Ferrari’s Formula One program. Unlike the F40, the F50 emphasized mechanical purity and open-top driving, creating one of the closest connections between a Ferrari road car and a Formula One car."
+},
+
+
+murcielago:{
+name:"Lamborghini Murcielago",
+img:"murcielago_factory.jpg",
+text:"The Lamborghini Murciélago marked Lamborghini’s transformation under Audi ownership and introduced modern manufacturing standards to the brand. Engineers focused on improving structural rigidity and reliability while preserving Lamborghini’s naturally aspirated V12 tradition. Built in Sant’Agata Bolognese using a strengthened steel spaceframe with carbon fiber components, the Murciélago became Lamborghini’s flagship throughout the early 2000s and laid the foundation for future Lamborghini engineering."
+},
+
+
+enzo:{
+name:"Ferrari Enzo",
+img:"enzo_factory.jpg",
+text:"Named after Ferrari’s founder, the Ferrari Enzo represented Ferrari’s technological flagship of the early 2000s. Built in Maranello using advanced carbon fiber construction, the Enzo incorporated Formula One technologies including paddle-shift transmission, active aerodynamics, and carbon ceramic brakes. Its naturally aspirated V12 engine and extreme aerodynamic design made it one of the most advanced production cars of its era."
+},
+
+
+gallardo:{
+name:"Lamborghini Gallardo",
+img:"gallardo_factory.jpg",
+text:"The Lamborghini Gallardo was introduced in 2003 as Lamborghini expanded under Audi ownership and sought to reach a broader global market. Built in Sant’Agata Bolognese on an aluminum spaceframe chassis and powered by a V10 engine, the Gallardo combined Lamborghini styling with improved reliability and usability. It became Lamborghini’s best-selling model at the time and played a major role in stabilizing the company financially."
+},
+
+
+f458:{
+name:"Ferrari 458 Italia",
+img:"f458_factory.jpg",
+text:"The Ferrari 458 Italia represented the peak of Ferrari’s naturally aspirated V8 development. Introduced in 2009 and built in Maranello, the 458 used advanced aerodynamics derived from Formula One along with an aluminum chassis and a high-revving 9,000 RPM V8 engine. Engineers focused heavily on driver engagement and balance, and the 458 quickly became one of the most highly regarded Ferrari road cars ever produced."
+},
+
+
+huracan:{
+name:"Lamborghini Huracan",
+img:"huracan_factory.jpg",
+text:"The Lamborghini Huracán replaced the Gallardo and refined Lamborghini’s V10 platform with modern electronics and improved chassis engineering. Built in Sant’Agata Bolognese using a hybrid aluminum and carbon fiber structure, the Huracán introduced advanced traction control and stability systems while maintaining Lamborghini’s aggressive performance character. It became Lamborghini’s most successful production model."
+},
+
+
+california:{
+name:"Ferrari California T",
+img:"california_factory.jpg",
+text:"The Ferrari California T marked Ferrari’s return to turbocharged engines in modern production cars. Built in Maranello as a grand touring convertible, the California T combined a twin-turbocharged V8 with a front-engine layout and comfortable interior. It represented Ferrari’s transition toward more efficient engines while preserving performance and everyday usability."
+},
+
+
+aventador:{
+name:"Lamborghini Aventador",
+img:"aventador_factory.jpg",
+text:"The Lamborghini Aventador became Lamborghini’s flagship V12 supercar beginning in 2011. Built in Sant’Agata Bolognese around a full carbon fiber monocoque chassis, it featured a newly developed naturally aspirated 6.5-liter V12 engine. The Aventador defined Lamborghini’s modern identity and remained in production for over a decade."
+},
+
+
+laferrari:{
+name:"Ferrari Laferrari",
+img:"laferrari_factory.jpg",
+text:"LaFerrari marked Ferrari’s entry into the hybrid hypercar era. Built in Maranello with extensive carbon fiber construction, it combined a naturally aspirated V12 engine with Ferrari’s Formula One-derived HY-KERS hybrid system. Producing nearly 950 horsepower, LaFerrari represented Ferrari’s technological peak and engineering direction for future models."
+},
+
+
+sian:{
+name:"Lamborghini Sian",
+img:"sian_factory.jpg",
+text:"The Lamborghini Sián introduced Lamborghini’s first hybrid production drivetrain using innovative supercapacitor technology. Built in extremely limited numbers in Sant’Agata Bolognese, the Sián combined electric assistance with Lamborghini’s traditional V12 engine and represented the company’s transition into electrified performance."
+},
+
+
+sf90:{
+name:"Ferrari SF90 Stradale",
+img:"sf90_factory.jpg",
+text:"The Ferrari SF90 Stradale became Ferrari’s first plug-in hybrid production supercar. Built in Maranello, it combined a twin-turbocharged V8 engine with three electric motors to produce nearly 1000 horsepower. The SF90 represents Ferrari’s modern technological direction influenced heavily by Formula One hybrid development."
+},
+
+
+revuelto:{
+name:"Lamborghini Revuelto",
+img:"revuelto_factory.jpg",
+text:"The Lamborghini Revuelto replaced the Aventador and introduced Lamborghini’s first fully hybrid V12 flagship. Built in Sant’Agata Bolognese using a new carbon fiber platform and advanced hybrid drivetrain, the Revuelto represents Lamborghini’s transition into the electrified supercar era while preserving the traditional V12 engine."
+},
+
+
+f296:{
+name:"Ferrari 296 GTB",
+img:"f296_factory.jpg",
+text:"The Ferrari 296 GTB introduced Ferrari’s new turbocharged V6 hybrid architecture. Built in Maranello with advanced aerodynamics and hybrid technology derived from Ferrari’s racing programs, the 296 GTB represents Ferrari’s next generation performance direction."
+}
+
 };
 
-body.innerHTML=`
-<img src="${history[car].img}" style="width:33%; max-width:260px; display:block; margin:0 auto 1.5rem auto; border-radius:10px;">
-<h2 style="text-align:center;">${car.toUpperCase()}</h2>
-<p style="text-align:center; line-height:1.8; max-width:700px; margin:0 auto;">${history[car].text}</p>
-`;
 
-modal.classList.add("show");
+document.getElementById("modal-body").innerHTML=
+
+`<img src="${history[car].img}" style="width:260px;margin:auto;display:block;border-radius:10px">
+
+<h2 style="text-align:center">
+${history[car].name}
+</h2>
+
+<p style="text-align:center;max-width:650px;margin:auto;line-height:1.7">
+${history[car].text}
+</p>`;
+
+
+document.getElementById("modal").classList.add("show");
+
 }
+
 
 function closeModal(){
 document.getElementById("modal").classList.remove("show");
 }
+
 </script>
+
 
 </body>
 </html>
